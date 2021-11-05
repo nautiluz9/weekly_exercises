@@ -1,0 +1,71 @@
+<!doctype html>
+
+<head>
+  <meta charset=utf-8>
+  <!-- Load plotly.js into the DOM -->
+  <script src='https://cdn.plot.ly/plotly-2.4.2.min.js'></script>
+  <title>Food Survey</title>
+</head>
+
+<body>
+  <div id='myDiv'>
+    <!-- Plotly chart will be drawn inside this DIV -->
+  </div>
+</body>
+
+<!-- Code is below (between the <script> tags), HTML is above -->
+
+<script>
+  // Create a variable called `things` to store a list of things
+  var things = ['apples', 'oranges', 'bananas']
+  // Create a variable called `scores` to hold a list of scores for each thing
+  // It must have the same number of items in the list as the the `things` list
+  // (must have a score for each thing)
+  var scores = [0,0,0]
+  // Create a variable to hold a list of people to take part in the survey
+  var people = ['Filipa', 'Paulo', 'Ines', 'Jorge'];
+
+  // Use the Javascript `for of` statement to go through each person of the people list
+  // the code between the {} will repeat for each item of the list (person)
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of
+  for (var person of people) {
+    // Create a counter to keep track of which thing in the list we are asking about
+    // and also which score we need to change.
+    // Computers start counting at 0, so the first item in the list can be accessed by 
+    // using `things[0]` and `scores[0]`
+    var counter = 0;
+    // Use a `while` to loop until we have gone through the entire `things` list
+    // < means 'less than', so it checks if `counter` is less than the length of the list,
+    // if it is, then we continue with the loop.
+    while (counter < things.length) {
+      let response = window.prompt('Hello ' + person + ', do you like ' + things[counter] + '?');
+      // Any response other then 'yes' will count as a no
+      if (response === 'yes') {
+        scores[counter] += 1;
+      }
+      // Remember to increase the counter, otherwise it will not progress through the list
+      // Can also be written as `counter += 1;` or 'counter++;'
+      counter = counter + 1;
+    }
+  }
+
+  // Here we initialise the data needed by Plotly to draw the bar chart
+  var data = [
+    {
+      x: things,
+      y: scores,
+      type: 'bar'
+    }
+  ];
+
+  // Tell Plotly to draw the chart in the HTML inside the element that has the `myDiv` id
+  Plotly.newPlot('myDiv', data);
+
+  // All the variables we created in this code can be called whatever you want
+  // as long as it is not a keyword in Javascrip (like `var` or `for`, etc...)
+  // For example we could call `things` `foods` instead
+  // and `person` could be `name` for example
+  // It's good practive to name the variable in a way that makes sense,
+  // eg. it would be confusing if we called the `counter` variable `cats`,
+  // even though the code would still work.
+</script>
