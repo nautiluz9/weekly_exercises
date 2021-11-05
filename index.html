@@ -16,6 +16,7 @@
 <!-- Code is below (between the <script> tags), HTML is above -->
 
 <script>
+  
   // Create a variable called `things` to store a list of things
   var things = ['apples', 'oranges', 'bananas']
   // Create a variable called `scores` to hold a list of scores for each thing
@@ -59,10 +60,11 @@
   ];
 
   // Tell Plotly to draw the chart in the HTML inside the element that has the `myDiv` id
+  // Find more info at: https://plotly.com/javascript/
   Plotly.newPlot('myDiv', data);
 
   // All the variables we created in this code can be called whatever you want
-  // as long as it is not a keyword in Javascrip (like `var` or `for`, etc...)
+  // as long as it is not a keyword in Javascript (like `var` or `for`, etc...)
   // For example we could call `things` `foods` instead
   // and `person` could be `name` for example
   // It's good practive to name the variable in a way that makes sense,
