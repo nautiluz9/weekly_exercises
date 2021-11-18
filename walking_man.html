@@ -33,7 +33,7 @@
 <!-- Code is below (between the <script> tags), HTML is above -->
 
 <script>
-  // Set up all the data that we need for this //
+  // Frist, set up and store all the information that we need for this //
 
   // First using the const keyword, for things that don't need to be updated
   // For details about Canvas, see: https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API
@@ -49,7 +49,9 @@
   var currentFrame = 0;
   var xPos = - width; // start from off the left of the canvas by using negative value
   var ypos = 0;
-  // Use the onload callback to trigger the animation once the image is loaded
+
+  // Now that the information is set up,
+  // we use the onload callback which triggers the animation once the image is loaded
   img.onload = function () {
     // For details about setInterval, see: https://developer.mozilla.org/en-US/docs/Web/API/setInterval
     // Using this we cause our animate function to be called every 100ms
@@ -57,6 +59,7 @@
   }
 
 
+  // All the animation happens inside this function
   function animate() {
     currentFrame = currentFrame + 1;
     xPos = xPos + 5;
