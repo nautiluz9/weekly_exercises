@@ -1,0 +1,82 @@
+<!-- Based on: https://codepen.io/redspiderfish/pen/YPVvOz -->
+<!doctype html>
+
+<head>
+  <meta charset=utf-8>
+  <title>Walking Man</title>
+</head>
+
+<!-- Set some CSS style attributes that we need -->
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  #container {
+    margin: 0 auto;
+    width: 300px;
+    height: 168;
+    border: 2px solid #0f0;
+  }
+</style>
+
+<body>
+
+  <div id="container">
+    <canvas id="walking-man" width="300" height="168"></canvas>
+  </div>
+
+</body>
+
+<!-- Code is below (between the <script> tags), HTML is above -->
+
+<script>
+  // Set up all the data that we need for this //
+
+  // First using the const keyword, for things that don't need to be updated
+  // For details about Canvas, see: https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API
+  const canvas = document.getElementById("walking-man");
+  const ctx = canvas.getContext("2d");
+  const totalFrames = 6;
+  const width = 28;
+  const height = 42;
+  // Then using the var keyword to create variables which will be updated to keep track of things
+  // For details about Image, see: https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/Image
+  var img = new Image();
+  img.src = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/160783/mario.png";
+  var currentFrame = 0;
+  var xPos = -28;
+  var ypos = 0;
+  // Use the onload callback to trigger the animation once the image is loaded
+  img.onload = function () {
+    // For details about setInterval, see: https://developer.mozilla.org/en-US/docs/Web/API/setInterval
+    // Using this we cause our animate function to be called every 100ms
+    setInterval(animate, 100);
+  }
+
+
+  function animate() {
+    currentFrame = currentFrame + 1;
+    xPos = xPos + 5;
+
+    // Check if the x position is greater than the width of our canvas and container
+    if (xPos > 300) {
+      xPos = -28;
+      ypos = ypos + 42;
+      // Check if the y position is lower than the height of the canvas and container
+      if (ypos + height > 168) {
+        ypos = 0;
+      }
+    }
+    if (currentFrame > totalFrames) {
+      currentFrame = 0;
+    }
+    // Clear the canvas, so that we don't see a trail
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage
+    ctx.drawImage(img, currentFrame * width, 0, width, height, xPos, ypos, width, height);
+  }
+
+</script>

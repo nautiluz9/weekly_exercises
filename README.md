@@ -1,4 +1,4 @@
-# food_survey
+# Weekly exercises
 
-All code is in `index.html`, including explanatory comments. To run it, just
+Code for each week is in it's own html file, including explanatory comments. To run it, just
 download the file and open it in any browser.
