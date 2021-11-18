@@ -61,13 +61,14 @@
 
   // All the animation happens inside this function
   function animate() {
-
-    // Check if the x position is greater than the width of our canvas and container
+    // First check if the x position is greater than the width of our canvas and container
     if (xPos > 300) {
+      // If it is, we move back to the left and down one height
       xPos = - width; 
       ypos = ypos + height;
       // Check if the y position is lower than the height of the canvas and container
       if (ypos + height > 168) {
+        // Move back to top
         ypos = 0;
       }
     }
