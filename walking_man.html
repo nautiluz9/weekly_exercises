@@ -47,7 +47,7 @@
   var img = new Image();
   img.src = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/160783/mario.png";
   var currentFrame = 0;
-  var xPos = -28;
+  var xPos = - width; // start from off the left of the canvas by using negative value
   var ypos = 0;
   // Use the onload callback to trigger the animation once the image is loaded
   img.onload = function () {
@@ -63,8 +63,8 @@
 
     // Check if the x position is greater than the width of our canvas and container
     if (xPos > 300) {
-      xPos = -28;
-      ypos = ypos + 42;
+      xPos = - width; 
+      ypos = ypos + height;
       // Check if the y position is lower than the height of the canvas and container
       if (ypos + height > 168) {
         ypos = 0;
