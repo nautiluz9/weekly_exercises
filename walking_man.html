@@ -61,8 +61,6 @@
 
   // All the animation happens inside this function
   function animate() {
-    currentFrame = currentFrame + 1;
-    xPos = xPos + 5;
 
     // Check if the x position is greater than the width of our canvas and container
     if (xPos > 300) {
@@ -80,6 +78,9 @@
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     // https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage
     ctx.drawImage(img, currentFrame * width, 0, width, height, xPos, ypos, width, height);
+    // Make sure we advance the frame and also the position of the man
+    currentFrame = currentFrame + 1;
+    xPos = xPos + 5;
   }
 
 </script>
