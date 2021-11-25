@@ -2,20 +2,63 @@
 
 <head>
   <meta charset=utf-8>
-  <!-- Load plotly.js into the DOM -->
-
   <title>Word guess</title>
 </head>
 
 <body>
-  <div id='word'>
-    
-  </div>
 </body>
 
 <!-- Code is below (between the <script> tags), HTML is above -->
 
 <script>
-  
+  // A const (constant) is not allowed to change
+  const winMessage = "Well done!!! You guessed the correct word!";
+  const repeatLetterMessage = "You have already tried that letter, please try another";
+  const loseMessage = "Sorry, you ran out of guesses!";
+  const word = prompt('Player 1 - please enter a word for player 2 to guess:');
+  const letters = Array.from(word); // Converts word into a list of letters, eg ['h', 'e', 'l', 'l', 'o']
+  // A var (variable) is allowed to change
+  var remainingGuesses = 10;
+  var guesses = []; // Create an empty Array (list) to store each guess
 
+  var haveMissingLetters = true;
+
+  while (true) { // repeat this block until we run out of guesses or win
+    if (remainingGuesses === 0) {
+      window.alert(loseMessage);
+      break;
+    }
+    var progress = "";
+    haveMissingLetters = false; // reset every time the loop is run
+    for (const letter of letters) {
+      if (guesses.includes(letter)) {
+        progress += letter + " ";
+      } else {
+        progress += "_ ";
+        haveMissingLetters = true; // if we have a letter that's not guessed, the game is not won yet!
+      }
+    }
+    if (haveMissingLetters === false) { // if there are no missing letters, it must mean the game is won!
+      gameIsRunning = false;
+      window.alert(winMessage);
+      break; // break out of loop
+    }
+    var guess = "";
+    while (guess === "") { // while the guess is empty, do this block of code
+      var message = "Word: [ " + progress + " ]. ";
+      message += "Guesses remaining: " + remainingGuesses + ". ";
+      message += "Already guessed letters: [ " + guesses + " ]. ";
+      message += "Please enter next letter to guess: ";
+      guess = prompt(message);
+      if (guesses.includes(guess)) { // Check if we already guessed this letter
+        guess = ""; // if so we reset guess to "" and try again
+        alert(repeatLetterMessage);
+      }
+    }
+    if (letters.includes(guess) === false) { // reduce the number of goes left if incorrect guess
+      remainingGuesses = remainingGuesses - 1;
+      console.log("reduces guesses");
+    }
+    guesses.push(guess); // Add the guess to guesses
+  }
 </script>
